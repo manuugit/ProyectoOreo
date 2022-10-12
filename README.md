@@ -1,2 +1,2 @@
 # ProyectoOreo
-Proyecto oreo Raspi
+Proyecto oreo Raspi - About
