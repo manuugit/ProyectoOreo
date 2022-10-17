@@ -3,8 +3,8 @@ import speech_recognition as sr
 import pyttsx3
 # from aiy.board import Board, Led
 
-
 r = sr.Recognizer()
+engine = pyttsx3.init()
 
 # def EncenderLed():
 #     Board().led.state = Led.ON
@@ -21,24 +21,29 @@ r = sr.Recognizer()
 # def EsperarSoltar():
 #     Board().button.wait_for_release()
 
-with sr.Microphone() as source:
-    # EncenderLed()
-    # EsperarClick()
-    # ApagarLed()
-    print("Iniciando Grabación de Audio...")
-    audio_data = r.record(source, duration=7)
-    print("Reconociendo...")
-    text = r.recognize_google(audio_data, language="es-ES")
-    # EsperarSoltar()
-    print(text)
-
-    engine = pyttsx3.init()
+def inicializarEngine():
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[20].id)
+    # for voice in voices:
+    #     print(voice)
+
+    #EN EL RASPI
+    # engine.setProperty('voice', voices[20].id)
+
+    #EN WINDOWS DEPENDE DE LA INSTALACION
+    engine.setProperty('voice', voices[2].id)
+    
     engine.setProperty('rate', 140)
+
+def raspiHabla(text):
     engine.say(text)
     engine.runAndWait()
+
+
+def main():
+    inicializarEngine()
+    raspiHabla("Bienvenido Señor Usuario")
+    raspiHabla("Por favor seleccione una de las siguientes opciones")
     
-    
-    #playsound("pista.mp3")
-    
+
+if __name__ == "__main__":
+    main()
