@@ -6,6 +6,8 @@ import pyttsx3
 r = sr.Recognizer()
 engine = pyttsx3.init()
 
+Diccionario_sentimientos = {}
+
 # def EncenderLed():
 #     Board().led.state = Led.ON
 
@@ -52,6 +54,38 @@ def reconocerVoz(seconds) -> String:
         # EsperarSoltar()
     return text
 
+def crearDiccionario(): #Creación de diccionario
+    print("Prueba Diccionario")
+
+    Diccionario_sentimientos = {'Confundido':'Confusion',
+    'Vacio':'Hipotimia',
+    'Solo':'Hipotimia',
+    'Estresado':'Estres',
+    'Angustiado':'Hipotimia',
+    'Euforico':'Euforia',
+    'Ansioso':'Ansiedad',
+    'Tranquilo':'Tranquilidad',
+    'Emocionado':'Energico',
+    'Asustado':'Ansiedad',
+    'Decepcionado':'Hipotimia',
+    'Desesperado':'Ansiedad',
+    'Energico':'Energico',
+    'Cansado':'Cansancio',
+    'Agotado':'Cansancio',
+    'Animado':'Euforia',
+    'Motivado':'Euforia',
+    'Desmotivado':'Hipotimia',
+    'Aburrido':'Hipotimia',
+    'Melancólico':'Hipotimia',
+    'Humillado':'Hipotimia',
+    'Frustrado':'Depresion',
+    'Enojado':'Enojo',
+    'Abrumado':'Hipotimia',
+    'Envidioso':'Envidioso',
+    'Orgulloso':'Orgulloso',
+    'Decaido':'Decaido'}
+
+
 def getKeyWords(text,array): #Texto de usuario, Array de posibles respuestas
     retArray = []
     text = text.upper()
@@ -63,7 +97,9 @@ def getKeyWords(text,array): #Texto de usuario, Array de posibles respuestas
         return "No hay elementos"        
     return retArray
 
+
 def main():
+    crearDiccionario()
     inicializarEngine()
     while True:
         raspiHabla("Bienvenido Señor Usuario")
