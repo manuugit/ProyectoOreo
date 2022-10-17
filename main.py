@@ -25,11 +25,13 @@ def inicializarEngine():
     voices = engine.getProperty('voices')
     # for voice in voices:
     #     print(voice)
+
     #EN EL RASPI
     # engine.setProperty('voice', voices[20].id)
 
     #EN WINDOWS DEPENDE DE LA INSTALACION
     engine.setProperty('voice', voices[2].id)
+    
     engine.setProperty('rate', 140)
 
 def raspiHabla(text):
