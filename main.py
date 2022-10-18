@@ -6,18 +6,18 @@ import pyttsx3
 r = sr.Recognizer()
 engine = pyttsx3.init()
 Diccionario_sentimientos = {'Confundido':'Confusion',
-    'Vacio':'Hipotimia',
+    'Vacío':'Hipotimia',
     'Solo':'Hipotimia',
     'Estresado':'Estres',
     'Angustiado':'Hipotimia',
-    'Euforico':'Euforia',
+    'Eufórico':'Euforia',
     'Ansioso':'Ansiedad',
     'Tranquilo':'Tranquilidad',
     'Emocionado':'Energico',
     'Asustado':'Ansiedad',
     'Decepcionado':'Hipotimia',
     'Desesperado':'Ansiedad',
-    'Energico':'Energico',
+    'Enérgico':'Energico',
     'Cansado':'Cansancio',
     'Agotado':'Cansancio',
     'Animado':'Euforia',
@@ -31,7 +31,7 @@ Diccionario_sentimientos = {'Confundido':'Confusion',
     'Abrumado':'Hipotimia',
     'Envidioso':'Envidioso',
     'Orgulloso':'Orgulloso',
-    'Decaido':'Decaido'}
+    'Decaído':'Decaido'}
 
 # def EncenderLed():
 #     Board().led.state = Led.ON
@@ -80,30 +80,42 @@ def reconocerVoz(seconds) -> String:
     return text
 
 
+def cambiarUltimaLetra(palabra, letra) -> String:
+    palabraNueva = ""
+    palabraNueva = palabra[:len(palabra)-1]+letra
+    return palabraNueva
+
+def prepararArray(array) : #estandariza las keywords para que queden en un solo género
+    for i in range(len(array)):
+        array[i] = cambiarUltimaLetra(array[i],'o')
 
 def getKeyWords(text,array): #Texto de usuario, Array de posibles respuestas
     retArray = []
     text = text.upper()
     print(text)
     for palabra in array:
-        palabre = palabra[:len(palabra)-1]+'a'
+        palabre = cambiarUltimaLetra(palabra,'a')
         # palabre[len(palabre)-1] = 'a'
         if text.__contains__(palabra.upper()):
             retArray.append(palabra)
         if text.__contains__(palabre.upper()):
             retArray.append(palabre)
+
+    prepararArray(retArray)
+
     if retArray == []:
-        return "No hay elementos"        
+        return "No hay elementos"       
     return retArray
 
-
+    
 def main():
-    inicializarEngine()
+   # inicializarEngine()
     while True:
         raspiHabla("Bienvenido Señor Usuario")
         raspiHabla("Por favor seleccione una de las siguientes opciones")
         raspiHabla("Diga 'Reportar estado de ánimo' para recomendarte algo según tu estado de ánimo")
         print(getKeyWords(reconocerVoz(7),list(Diccionario_sentimientos.keys())))
+        
 
 
 
