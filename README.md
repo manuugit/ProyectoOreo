@@ -21,5 +21,9 @@ Python 3
 1. Speech Recognition (Librería de Google para reconocimiento de voz).
 2. pyttsx3 (Librería para Text To Speech).
 3. Librerías AIY de Google para la interacción con hardware especificado de Google.
-4. Sklearn
+4. Sklearn para los metodos de Machine Learning
+5. pandas para manejo de datos en formato dataframe
+6. numpy es para operaciones matematicas
+7. matplotlib para graficas en caso de ser necesario
+8. sqlite3 para el manejo de base de datos
 
