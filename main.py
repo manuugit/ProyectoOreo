@@ -4,7 +4,7 @@ import speech_recognition as sr
 import pyttsx3
 import pandas as pd # manipulacion dataframes
 import numpy as np  # matrices y vectores
-import matplotlib.pyplot as plt #gráfica
+#import matplotlib.pyplot as plt #gráfica
 import sqlite3 #La BD
 # from aiy.board import Board, Led
 
@@ -196,10 +196,8 @@ def main():
                     insertarBD("insert into gustos(gusto,idUsuario) values('{0}',{1})".format(Diccionario_gustos.get(int(opcion)), idUsuario))
                                 
         else:
-            gustosBD = cur.execute("SELECT gusto FROM gustos INNER JOIN usuarios ON gustos.idUsuario = usuarios.idUsuario WHERE nombre = ?",(nombre,)).fetchall()
-            gustos = []
-            for gusto in gustosBD:
-                gustos.append(gusto[0])
+            gustos = cur.execute("SELECT gusto FROM gustos INNER JOIN usuarios ON gustos.idUsuario = usuarios.idUsuario WHERE nombre = ?",(nombre,)).fetchall()
+            gustos = list(map(lambda x: x[0],gustos))
             print(gustos)
 
         # raspiHabla("Diga 'Reportar estado de ánimo' para recomendarte algo según tu estado de ánimo")
