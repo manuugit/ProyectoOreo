@@ -163,22 +163,34 @@ def getKeyWords(text,array): #Texto de usuario, Array de posibles respuestas
         return "No hay elementos"       
     return retArray
 
+# def Recomendar(nombre):
+#     if
     
 def main():
     inicializarEngine()
     creacionTablasBD()
     while True:
-        raspiHabla("Bienvenido Señor Usuario")
-        raspiHabla("Por favor cuando el botón se ilumine, presionelo y diga su nombre.")
-        #Esperar click de botón
+        # EncenderLed()
+        # EsperarClick()
+        # ApagarLed()
+        raspiHabla("¡Hola! Mi nombre es Oreo. Soy un asistente de voz con un solo propósito")
+        raspiHabla("¡Quiero ayudarte a sentirte mejor!")
+        # EncenderLed()
+        # EsperarClick()
+        # ApagarLed()
+        raspiHabla("Por favor cuando el botón se ilumine, mantenlo presionado y dime tu nombre")
+        # EncenderLed()
+        # EsperarClick()
+        # ApagarLed()
         nombre = reconocerVoz(3)
-        #On realease de botón
-        raspiHabla("Hola "+nombre+", esta tu nombre correcto?")
-        #Validación por medio de interacción con botón para tener el nombre correcto de usuario
+        # EsperarSoltar()
+        
+
+        # Validación por medio de interacción con botón para tener el nombre correcto de usuario
 
         #Obtener nombre si existe en la BD
         valNombre = cur.execute("select nombre from usuarios where nombre=?",(nombre,)).fetchone()
-        #Si el nombre no existe se trata de un usuario nuevo
+        # Si el nombre no existe se trata de un usuario nuevo
         if(valNombre==None):
             insertarBD("insert into usuarios(nombre) values('{0}')".format(nombre))
             idUsuario = cur.execute("select * from usuarios where nombre=?",(nombre,)).fetchone()[0]
@@ -198,6 +210,11 @@ def main():
         else:
             gustos = cur.execute("SELECT gusto FROM gustos INNER JOIN usuarios ON gustos.idUsuario = usuarios.idUsuario WHERE nombre = ?",(nombre,)).fetchall()
             gustos = list(map(lambda x: x[0],gustos))
+            raspiHabla("Hola "+nombre+", lamento que estes así")
+            raspiHabla("Noto que te gusta: {0}".format(' ,'.join(map(str,gustos))))
+            raspiHabla("Según mi algoritmo. ¿Que te parece sí pintas algo para sentirte mejor?")
+            raspiHabla("No tiene sentido que te recomiende algo que te gusta, supongo que ya lo intentaste.")
+            raspiHabla("Sé que quizás no te consideres bueno haciéndolo, pero dale un intento.")
             print(gustos)
 
         # raspiHabla("Diga 'Reportar estado de ánimo' para recomendarte algo según tu estado de ánimo")
