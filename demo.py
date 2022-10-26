@@ -186,7 +186,7 @@ def prediccionCluster(gustos, sentimientos):
 
     #Realizamos la prediccion
     prediccion = modeloKNN.predict(valores)
-    return prediccion
+    return prediccion[0]
     
     
 def main():
