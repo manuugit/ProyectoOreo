@@ -31,4 +31,5 @@ Python 3
 6. numpy es para operaciones matematicas
 7. matplotlib para graficas en caso de ser necesario
 8. sqlite3 para el manejo de base de datos
+9. pickle para manejo de modelos de sklearn (Machine Learning)
 
