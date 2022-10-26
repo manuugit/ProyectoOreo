@@ -1,4 +1,9 @@
 # ProyectoOreo
+## Autores
+* Manuela Hernández Ríos
+* Miguel Angel Gallego Zuleta
+* Jean Pierre Antonio Agudelo Taborda
+* Carlos Andres Uribe Cortes
 ## About
 Proyecto Oreo es un proyecto pensado para intentar solucionar y apoyar a las personas que están lidiando con problemas de salud mental.
 Cerca del 70% de los jóvenes en colombia han tenido que sobrellevar pensamientos negativos.
