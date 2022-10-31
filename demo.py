@@ -186,9 +186,16 @@ def prediccionCluster(gustos, sentimientos):
 
     #Realizamos la prediccion
     prediccion = modeloKNN.predict(valores)
-    return prediccion[0]
+    return prediccion[0]    
     
-    
+def Recomendar(cluster):
+    rec = ""
+    #obtenemos el numero de cluster
+    perfil = int(cluster[7:len(cluster)])
+    #consulta de recomendacion según el cluster
+    rec = cur.execute("select recomendacion from recomendaciones where idRecomendacion=?",(perfil,)).fetchone()
+    return rec
+
 def main():
     inicializarEngine()
     creacionTablasBD()
@@ -233,14 +240,14 @@ def main():
         else:
             gustos = cur.execute("SELECT gusto FROM gustos INNER JOIN usuarios ON gustos.idUsuario = usuarios.idUsuario WHERE nombre = ?",(nombre,)).fetchall()
             gustos = list(map(lambda x: x[0],gustos))
-            raspiHabla("Hola "+nombre+", lamento que estes así")
+            raspiHabla("Hola "+nombre+", lamento que estés así")
             raspiHabla("Noto que te gusta: {0}".format(' ,'.join(map(str,gustos))))
             # raspiHabla("Según mi algoritmo. ¿Que te parece sí pintas algo para sentirte mejor?")
             # raspiHabla("No tiene sentido que te recomiende algo que te gusta, supongo que ya lo intentaste.")
             # raspiHabla("Sé que quizás no te consideres bueno haciéndolo, pero dale un intento.")
             # print(gustos)
         
-        raspiHabla("Cuando el boton se ilumine presionalo y dime cual es tu estado de animo")
+        raspiHabla("Cuando el botón se ilumine presiónalo y dime cuál es tu estado de ánimo")
         # EncenderLed()
         # EsperarClick()
         # ApagarLed()
@@ -254,6 +261,8 @@ def main():
             sentimientos[i] = "Diario."+sentimientos[i]
 
         clusterAsignado = prediccionCluster(gustos, sentimientos)
+        raspiHabla("Según lo que me dijiste, he encontrado una recomendación para ti hoy")
+        raspiHabla(Recomendar(clusterAsignado))
         break
         
 
