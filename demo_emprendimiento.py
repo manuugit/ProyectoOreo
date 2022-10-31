@@ -115,7 +115,7 @@ def inicializarEngine():
     #EN WINDOWS DEPENDE DE LA INSTALACION
     engine.setProperty('voice', voices[2].id)
     
-    engine.setProperty('rate', 140)
+    engine.setProperty('rate', 210)
 
 def raspiHabla(text):
     print(text)
@@ -200,9 +200,13 @@ def main():
             gustos = list(map(lambda x: x[0],gustos))
             print(gustos)
 
-        # raspiHabla("Diga 'Reportar estado de ánimo' para recomendarte algo según tu estado de ánimo")
-        # print(getKeyWords(reconocerVoz(7),list(Diccionario_sentimientos.keys())))
-        
+        raspiHabla("Noto que te gusta: {0}".format(' ,'.join(map(str,gustos))))
+        raspiHabla("Dime, ¿Como te sientes el día de hoy?")
+        print(getKeyWords(reconocerVoz(7),list(Diccionario_sentimientos.keys())))
+        raspiHabla("Según mi algoritmo. ¿Que te parece sí pintas algo para sentirte mejor?")
+        raspiHabla("No tiene sentido que te recomiende algo que te gusta, supongo que ya lo intentaste.")
+        raspiHabla("Sé que quizás no te consideres bueno haciéndolo, pero dale un intento.")
+        break
 
 
 
