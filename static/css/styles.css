@@ -73,6 +73,17 @@ body {
 }
 .gustosselector h1{
     font-weight: normal;
+    margin-bottom: 0px;
+}
+.gustosselector form p{
+    font-size: large;
+    font-weight: lighter;
+}
+.gustosselector form p input{
+    font-size: large;
+    font-weight: lighter;
+    border: none;
+    
 }
 #gustos{
     height: fit-content;
@@ -90,10 +101,11 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
 }
-
 .sentimientossec{
     display: flex;
     justify-content: center;
+    flex-flow: row;
+    column-gap: 40px;
 }
 .sentimientosselector{
     margin-top: 10px;
@@ -106,4 +118,36 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+}
+.sentimientosselector h1{
+    font-weight: 400;
+}
+.recomendar{
+    padding: 20px 40px 20px 40px;
+    height: fit-content;
+    border-radius: 7px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.recomendacion{
+    margin-top: 10px;
+    padding: 5px 30px 5px 40px;
+    width: 40%;
+    height: fit-content;
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 2px 2px 20px 2px #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-self: center;
+}
+.recomendacion h3{
+    font-weight: normal;
+}
+select{
+    overflow-y: auto;
 }

@@ -30,15 +30,26 @@
                 <div class="form-group">
                     <label for="gustos">!Podemos Ayudarte! <br>
                         Por favor seleccióna tus sentimientos</label>
-                    <select multiple class="form-control" size="30" id="gustos">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <select name="sentimiento" multiple class="form-control" size="27" id="gustos">
+                        {% block content %}
+                        {%for llave, valor in data.items() %}
+                            <option value="{{valor}}">{{llave}}</option>
+                        {% endfor %}
+                        {% endblock content %}
                     </select>
+                    <div class="recomendar">
+                        <input type="submit" class="btn btn-primary" value="Recomendar" onclick="document.querySelector('.recomendacion').removeAttribute('hidden')">
+                    </div>
                   </div>
             </form>
         </main>
+        {% block recomendar %}
+        {% if sentimiento%} 
+            <aside class="recomendacion">
+                <h3>Lamentamos que te sientas así</h3>
+                <p>Según nuestro algoritmo y sistema de inteligencia articial, tienes sentimientos de {{sentimiento}} y te recomendamos: </p>
+            </aside>
+        {% endif %}
+        {% endblock recomendar %}
 </body>
 </html>
