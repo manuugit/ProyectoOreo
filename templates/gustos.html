@@ -27,15 +27,24 @@
         <main class="gustosselector">
             <h1>Selección de gustos</h1>
             <form action="/recomendacion" method="post">
+                {% block content %}
                 {%for llave, valor in data.items() %}
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}">
+                    <!-- Este IF debe de tener la condición de la función para ver gustos que ya tiene la persona. -->
+                    <!-- Probablemente sea algo como if llave in {consultagustosBD} -->
+                        {% if llave%2==0%} 
+                            <input checked class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}">
+                        {% else %}
+                            <input class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}">
+                        {% endif %}
                     <label class="form-check-label" for="gusto{{llave}}">{{valor}}</label>
                 </div>
                 {% endfor %}
+                {% endblock content %}
             </form>
         </main>
         <aside class="gustosactuales">
+            <!-- Al darle submit se debe hacer update a los gustos de BD e ir a recomendación  -->
             <input type="submit" class="btn btn-primary" value="Continuar a recomendacion">
         </aside>
     </section>
