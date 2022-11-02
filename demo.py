@@ -189,11 +189,10 @@ def prediccionCluster(gustos, sentimientos):
     return prediccion[0]    
     
 def Recomendar(cluster):
-    rec = ""
     #obtenemos el numero de cluster
     perfil = int(cluster[7:len(cluster)])
     #consulta de recomendacion según el cluster
-    rec = cur.execute("select recomendacion from recomendaciones where idRecomendacion=?",(perfil,)).fetchone()
+    rec = cur.execute("select recomendacion from recomendaciones where idRecomendacion=?",(perfil,)).fetchone()[0]
     return rec
 
 def main():
@@ -240,7 +239,7 @@ def main():
         else:
             gustos = cur.execute("SELECT gusto FROM gustos INNER JOIN usuarios ON gustos.idUsuario = usuarios.idUsuario WHERE nombre = ?",(nombre,)).fetchall()
             gustos = list(map(lambda x: x[0],gustos))
-            raspiHabla("Hola "+nombre+", lamento que estés así")
+            raspiHabla("Hola "+nombre+", me alegra que estés de nuevo por acá")
             raspiHabla("Noto que te gusta: {0}".format(' ,'.join(map(str,gustos))))
             # raspiHabla("Según mi algoritmo. ¿Que te parece sí pintas algo para sentirte mejor?")
             # raspiHabla("No tiene sentido que te recomiende algo que te gusta, supongo que ya lo intentaste.")
