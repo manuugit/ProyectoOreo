@@ -6,6 +6,8 @@ app = Flask(__name__)
 def index():
     if request.method == 'GET':
         pass
+    if request.method == 'POST':
+        print(request.form.get('nombre'))
     return render_template('index.html', data = None)
 
 
@@ -20,6 +22,12 @@ def recomendacion():
     if request.method == 'GET':
         pass
     return render_template('recomendacion.html', data = None)
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == 'GET':
+        pass
+    return render_template('signup.html', data = None)
 
 if __name__ == '__main__':
     app.run(debug=True)
