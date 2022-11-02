@@ -58,3 +58,35 @@ body {
 .loginbuttons *{
     width: 50%;
 }
+
+.gustosselector{
+    margin-top: 10px;
+    padding: 20px 40px 20px 40px;
+    width: 30%;
+    height: fit-content;
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 2px 2px 20px 2px #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+#gustos{
+    height: fit-content;
+}
+.gustossec{
+    display: flex;
+    column-gap: 100px;
+}
+.gustosactuales{
+    padding: 20px 40px 20px 40px;
+    width: 30%;
+    height: fit-content;
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 2px 2px 20px 2px #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-self: center;
+}

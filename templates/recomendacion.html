@@ -23,5 +23,40 @@
             </div>
         </div>
     </nav>
+    <section class="gustossec">
+        <main class="gustosselector">
+            <h1>Selección de gustos</h1>
+            <form action="/recomendacion" method="post">
+                <div class="form-group">
+                    <label for="gustos">Por favor seleccióna tus gustos</label>
+                    <select multiple class="form-control" size="26" id="gustos">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+            </form>
+        </main>
+        <aside class="gustosactuales">
+            <section>
+                <h2>Gustos actuales</h2>
+            <form action="/recomendacion" method="post">
+                <div class="form-group">
+                    <label for="gustos">Estos son los gustos tuyos que tenemos registrados</label>
+                    <select multiple class="form-control" size="15" id="gustos">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+            </form>
+            </section>
+            <input type="submit" class="btn btn-primary" value="Continuar a recomendacion">
+        </aside>
+    </section>
 </body>
 </html>

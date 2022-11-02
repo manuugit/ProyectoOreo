@@ -23,5 +23,21 @@
             </div>
         </div>
     </nav>
+    <section class="gustossec">
+        <main class="gustosselector">
+            <h1>Selección de gustos</h1>
+            <form action="/recomendacion" method="post">
+                {%for llave, valor in data.items() %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}">
+                    <label class="form-check-label" for="gusto{{llave}}">{{valor}}</label>
+                </div>
+                {% endfor %}
+            </form>
+        </main>
+        <aside class="gustosactuales">
+            <input type="submit" class="btn btn-primary" value="Continuar a recomendacion">
+        </aside>
+    </section>
 </body>
 </html>
