@@ -1,0 +1,28 @@
+body {
+    padding: 50px 0px 0px 0px;
+    z-index: 0;
+}
+
+.navbar-dark{
+    background-color: #512da8;
+}
+.navbar-dark ul{
+    column-gap: 20px;
+}
+.navbar-dark a{
+    color:aliceblue;
+}
+.loginsec{
+    margin-top: 5%;
+    display:flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.loginitems{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    row-gap: 10px;
+}
