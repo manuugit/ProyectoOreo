@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
+from flask_session import Session
 
 app = Flask(__name__)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 Diccionario_sentimientos = {'Confundido':'Confusion',
     'Vacío':'Hipotimia',
@@ -62,18 +66,23 @@ def index():
     if request.method == 'GET':
         pass
     if request.method == 'POST':
-        print(request.form.get('nombre'))
+        session["nombre"] = request.form.get("nombre")
+        return redirect("/gustos")
     return render_template('index.html', data = None)
 
 
 @app.route('/gustos', methods=['GET','POST'])
 def gustos():
     if request.method == 'GET':
-        pass
+        if not session.get("nombre"):
+            return redirect("/")
+        else:
+            print(session.get("nombre"))
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        return render_template('gustos.html', data = Diccionario_gustos, nombre = nombre)
-
+        gustos=request.form.getlist('gusto')
+        session["gustos"] = gustos
+        print(session.get("gustos"))
+        return redirect("/recomendacion")
     return render_template('gustos.html', data = Diccionario_gustos)
 
 @app.route('/recomendacion', methods=['GET','POST'])
@@ -82,7 +91,9 @@ def recomendacion():
         pass
     if request.method == 'POST':
         sentimientos=request.form.getlist('sentimiento')
+        session["sentimientos"] = sentimientos
         sentimiento = max(set(sentimientos), key=sentimientos.count)
+        #Linea para obtener la recomendación
         return render_template('recomendacion.html', data = Diccionario_sentimientos, sentimiento=sentimiento)
     
     return render_template('recomendacion.html', data = Diccionario_sentimientos)
@@ -91,7 +102,17 @@ def recomendacion():
 def signup():
     if request.method == 'GET':
         pass
+
+    if request.method == 'POST':
+        session["nombre"] = request.form.get("nombre")
+        return redirect("/gustos")
+        
     return render_template('signup.html', data = None)
+
+@app.route('/logout', methods=['GET','POST'])
+def logout():
+    session["nombre"] = None
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)

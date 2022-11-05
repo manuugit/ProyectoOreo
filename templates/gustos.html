@@ -16,9 +16,15 @@
             </a>
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a class="nav-link" href="/"> Login</a></li>
+                    {% block session %}
+                    {% if session.nombre %}
+                        <li class="nav-item active"><a class="nav-link" href="/logout"> Log Out</a></li>
+                    {% else %}
+                        <li class="nav-item active"><a class="nav-link" href="/"> Log In</a></li>
+                    {% endif %}
+                    {% endblock %}
                     <li class="nav-item"><a class="nav-link" href="/gustos"> Gustos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/recomendacion"> Recomendacion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recomendacion"> Recomendación</a></li>
                 </ul>
             </div>
         </div>
@@ -26,9 +32,9 @@
     <section class="gustossec">
         <main class="gustosselector">
             <h1>Selección de gustos</h1>
-            <form action="/recomendacion" method="post">
+            <form action="/gustos" method="post">
                 {% block content %}
-                <p>Hola <input type="text" readonly value="{{nombre}}"> por favor valida tus gustos y selecciona nuevos de ser necesario</p>
+                <p>Hola <input type="text" readonly value="{{session.nombre}}"> por favor valida tus gustos y selecciona nuevos de ser necesario</p>
                 {%for llave, valor in data.items() %}
                 <div class="form-check">
                     <!-- Este IF debe de tener la condición de la función para ver gustos que ya tiene la persona. -->
