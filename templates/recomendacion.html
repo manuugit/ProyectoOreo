@@ -9,6 +9,7 @@
     <title>Recomendacion</title>
 </head>
 <body>
+    <!-- Barra de navegación usando Bootstrap -->
     <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
         <div class="container">
             <a class="navbar-brand mr-auto" href="">
@@ -16,7 +17,12 @@
             </a>
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav">
+                    <!--Esta sintaxis entre corchetes y parentesis hace refencia a código de Python, el módulo especifico
+                        se llama jinja, permite facilidades como plantillas de código para hacerlo reutilizable y interacción con
+                        datos enviados desde el backend, como es este caso.-->
+                    <!-- Este bloque de código se encarga de renderizar una u otra cosa en caso de que se trate de una sesión iniciada o no -->
                     {% block session %}
+                    <!-- La sesión del usuario se manda de forma default como una variable con la que podemos interactuar  -->
                     {% if session.nombre %}
                         <li class="nav-item active"><a class="nav-link" href="/logout"> Log Out</a></li>
                     {% else %}
@@ -37,6 +43,8 @@
                     <label for="gustos">!Podemos Ayudarte! <br>
                         Por favor seleccióna tus sentimientos</label>
                     <select name="sentimiento" multiple class="form-control" size="27" id="gustos">
+                        <!--El bloque de contenido en esta página se encarga de renderizar los gustos, estos fueron enviados desde el
+                            backend con el nombre de data.-->
                         {% block content %}
                         {%for llave, valor in data.items() %}
                             <option value="{{valor}}">{{llave}}</option>
@@ -49,6 +57,8 @@
                   </div>
             </form>
         </main>
+        <!--El bloque recomendar valida que se haya mandado una variable sentimiento con datos para renderizar una sección al lado del formulario
+            con la recomendación pertinente-->
         {% block recomendar %}
         {% if sentimiento%} 
             <aside class="recomendacion">

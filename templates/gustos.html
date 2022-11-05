@@ -16,7 +16,9 @@
             </a>
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav">
+                    <!-- Este bloque de código se encarga de renderizar una u otra cosa en caso de que se trate de una sesión iniciada o no -->
                     {% block session %}
+                    <!-- La sesión del usuario se manda de forma default como una variable con la que podemos interactuar  -->
                     {% if session.nombre %}
                         <li class="nav-item active"><a class="nav-link" href="/logout"> Log Out</a></li>
                     {% else %}
@@ -33,6 +35,8 @@
         <main class="gustosselector">
             <h1>Selección de gustos</h1>
             <form action="/gustos" method="post">
+                <!--El bloque de contenido en esta página se usa para renderizar el nombre del usuario y los gustos, así mismo de 
+                    darle check a los gustos que el usuario ya tenga en la base de datos.-->
                 {% block content %}
                 <p>Hola <input type="text" readonly value="{{session.nombre}}"> por favor valida tus gustos y selecciona nuevos de ser necesario</p>
                 {%for llave, valor in data.items() %}
@@ -49,7 +53,9 @@
                 {% endfor %}
                 {% endblock content %}
                 <div class="gustosactuales">
-                    <!-- Al darle submit se debe hacer update a los gustos de BD e ir a recomendación  -->
+                    <!-- TODO: 
+                            Al darle submit se debe hacer update a los gustos de BD e ir a recomendación  
+                    -->
                     <input type="submit" class="btn btn-primary" value="Continuar a recomendacion">
                 </div>
             </form>
