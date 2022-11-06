@@ -59,6 +59,12 @@ body {
     width: 50%;
 }
 
+#alert {
+    justify-content: center;
+    color: #e40f0f;
+    font-size: 12px;
+}
+
 .gustosselector{
     margin-top: 10px;
     padding: 5px 30px 5px 40px;
@@ -148,6 +154,14 @@ body {
 .recomendacion h3{
     font-weight: normal;
 }
+
+#prediccion{
+    justify-content: center;
+    color: #512da8;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 select{
     overflow-y: auto;
 }

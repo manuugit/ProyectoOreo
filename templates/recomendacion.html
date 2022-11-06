@@ -47,7 +47,7 @@
                             backend con el nombre de data.-->
                         {% block content %}
                         {%for llave, valor in data.items() %}
-                            <option value="{{valor}}">{{llave}}</option>
+                            <option value="{{llave}}">{{llave}}</option>
                         {% endfor %}
                         {% endblock content %}
                     </select>
@@ -63,7 +63,7 @@
         {% if sentimiento%} 
             <aside class="recomendacion">
                 <h3>Lamentamos que te sientas así</h3>
-                <p>Según nuestro algoritmo y sistema de inteligencia articial, tienes sentimientos de {{sentimiento}} y te recomendamos: </p>
+                <p>Según nuestro algoritmo y sistema de inteligencia articial, tienes sentimientos de {{sentimiento}} y te recomendamos: <stan id="prediccion">{{recomendacion}}</stan></p>
             </aside>
         {% endif %}
         {% endblock recomendar %}
