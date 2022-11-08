@@ -30,7 +30,7 @@ def insertarBD(sentencia):
     conn2.close
 
 #Modelo Predictivo y afines
-archivoModelo = 'modeloPredictivo.pkl'
+archivoModelo = 'modeloPredictivoAvanzado.pkl'
 modeloKNN, variablesModelo = pickle.load(open(archivoModelo, 'rb'))
 
 def prediccionCluster(gustos, sentimientos):
