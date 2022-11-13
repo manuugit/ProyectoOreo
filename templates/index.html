@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}"> 
+    <title>Login</title>
+</head>
+<body>
+    <!-- Barra de navegación usando Bootstrap -->
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand mr-auto" href="">
+                <img id="logo" src="" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"><a class="nav-link" href="#"> Login</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="/gustos"> Gustos</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="/recomendacion"> Recomendación</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Login usando CSS Flex y Bootstrap. -->
+    <section class="loginsec">
+        <main class="loginmain">
+            <h1> Proyecto Oreo </h1>
+            <form action="/" method='post' class="loginform">
+                <div class="loginitems">
+                    <label for="email">Ingrese su nombre por favor:</label>
+                    <input type="nombre" class="form-control" id="nombre" name="nombre" required placeholder="Enter nombre">
+                    <h3 id="alert">{{data}}</h3>
+                    <label for="password">Ingrese su contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                </div>
+                <div class="loginbuttons">
+                    <a type="button" class="btn btn-outline-info" href="/signup">Sign Up</a>
+                    <input type="submit" class="btn btn-outline-primary" value="Sign In">
+                </div>
+            </form>
+        </main>
+    </section>
+</body>
+</html>

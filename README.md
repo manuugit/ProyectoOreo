@@ -33,3 +33,12 @@ Python 3
 8. sqlite3 para el manejo de base de datos
 9. pickle para manejo de modelos de sklearn (Machine Learning)
 
+# Interfaz gráfica de usuario
+Para crear la interfaz de usuario se optó por montar un servicio web completo usando Python, HTML y CSS.
+## Detalle de tecnologías
+* <span style="color:blue">Python</span>:
+Para el backend del servicio web se usó la librería flask de <span style="color:blue">Python</span>, una librería para trabajar servidores web usando server-side rendering, con facilidades de código como trabajar codigo Python directamente en <span style="color:orange">HTML</span>, el trabajo con Flask facilita el patrón arquitectonico MVC (modelo vista controlador).
+* <span style="color:orange">HTML</span>:
+Usando <span style="color:orange">HTML</span> semántico para facilitar el SEO y la comprensión del código se hizo la interfaz gráfica de la aplicación junto con CSS
+* <span style="color:cyan">CSS</span>:
+Usando <span style="color:cyan">CSS</span> Flex y el framework <span style="color:purple">Bootstrap</span> se hizo el front-end de la aplicación.

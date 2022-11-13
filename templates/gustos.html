@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}"> 
+    <title>Gustos</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand mr-auto" href="">
+                <img id="logo" src="" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav">
+                    <!-- Este bloque de código se encarga de renderizar una u otra cosa en caso de que se trate de una sesión iniciada o no -->
+                    {% block session %}
+                    <!-- La sesión del usuario se manda de forma default como una variable con la que podemos interactuar  -->
+                    {% if session.nombre %}
+                        <li class="nav-item active"><a class="nav-link" href="/logout"> Log Out</a></li>
+                    {% else %}
+                        <li class="nav-item active"><a class="nav-link" href="/"> Log In</a></li>
+                    {% endif %}
+                    {% endblock %}
+                    <li class="nav-item"><a class="nav-link" href="/gustos"> Gustos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recomendacion"> Recomendación</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="gustossec">
+        <main class="gustosselector">
+            <h1>Selección de gustos</h1>
+            <form action="/gustos" method="post">
+                <!--El bloque de contenido en esta página se usa para renderizar el nombre del usuario y los gustos, así mismo de 
+                    darle check a los gustos que el usuario ya tenga en la base de datos.-->
+                {% block content %}
+                <p>Hola <input type="text" readonly value="{{session.nombre}}"> por favor valida tus gustos y selecciona nuevos de ser necesario</p>
+                {%for llave, valor in data.items() %}
+                <div class="form-check">
+                    <!-- Este IF debe de tener la condición de la función para ver gustos que ya tiene la persona. -->
+                    <!-- Probablemente sea algo como if llave in {consultagustosBD} -->
+                        {% if valor in gustosActuales%} 
+                            <input checked name="gusto" class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}" {{estado}}>
+                        {% else %}
+                            <input name="gusto" class="form-check-input" type="checkbox" value="{{valor}}" id="gusto{{llave}}" {{estado}}>
+                        {% endif %}
+                    <label class="form-check-label" for="gusto{{llave}}">{{valor}}</label>
+                </div>
+                {% endfor %}
+                {% endblock content %}
+                <div class="gustosactuales">
+                    <!-- TODO: 
+                            Al darle submit se debe hacer update a los gustos de BD e ir a recomendación  
+                    -->
+                    <input type="submit" class="btn btn-primary" value="Continuar a recomendacion" {{estado}}>
+                </div>
+            </form>
+        </main>
+    </section>
+</body>
+</html>

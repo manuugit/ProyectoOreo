@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css') }}"> 
+    <title>Recomendacion</title>
+</head>
+<body>
+    <!-- Barra de navegación usando Bootstrap -->
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand mr-auto" href="">
+                <img id="logo" src="" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav">
+                    <!--Esta sintaxis entre corchetes y parentesis hace refencia a código de Python, el módulo especifico
+                        se llama jinja, permite facilidades como plantillas de código para hacerlo reutilizable y interacción con
+                        datos enviados desde el backend, como es este caso.-->
+                    <!-- Este bloque de código se encarga de renderizar una u otra cosa en caso de que se trate de una sesión iniciada o no -->
+                    {% block session %}
+                    <!-- La sesión del usuario se manda de forma default como una variable con la que podemos interactuar  -->
+                    {% if session.nombre %}
+                        <li class="nav-item active"><a class="nav-link" href="/logout"> Log Out</a></li>
+                    {% else %}
+                        <li class="nav-item active"><a class="nav-link" href="/"> Log In</a></li>
+                    {% endif %}
+                    {% endblock %}
+                    <li class="nav-item"><a class="nav-link" href="/gustos"> Gustos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recomendacion"> Recomendación</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="sentimientossec">
+        <main class="sentimientosselector">
+            <h1>Selecciona tus sentimientos</h1>
+            <form action="/recomendacion" method="post">
+                <div class="form-group">
+                    <label for="gustos">!Podemos Ayudarte! <br>
+                        Por favor seleccióna tus sentimientos</label>
+                    <select name="sentimiento" multiple class="form-control" size="27" id="gustos">
+                        <!--El bloque de contenido en esta página se encarga de renderizar los gustos, estos fueron enviados desde el
+                            backend con el nombre de data.-->
+                        {% block content %}
+                        {%for llave, valor in data.items() %}
+                            <option value="{{llave}}">{{llave}}</option>
+                        {% endfor %}
+                        {% endblock content %}
+                    </select>
+                    <div class="recomendar">
+                        <input type="submit" class="btn btn-primary" value="Recomendar" onclick="document.querySelector('.recomendacion').removeAttribute('hidden')">
+                    </div>
+                  </div>
+            </form>
+        </main>
+        <!--El bloque recomendar valida que se haya mandado una variable sentimiento con datos para renderizar una sección al lado del formulario
+            con la recomendación pertinente-->
+        {% block recomendar %}
+        {% if sentimiento%} 
+            <aside class="recomendacion">
+                <h3>Lamentamos que te sientas así</h3>
+                <p>Según nuestro algoritmo y sistema de inteligencia articial, tienes sentimientos de {{sentimiento}} y te recomendamos: <stan id="prediccion">{{recomendacion}}</stan></p>
+            </aside>
+        {% endif %}
+        {% endblock recomendar %}
+</body>
+</html>
